@@ -10,14 +10,8 @@
   border-radius: 30px;
   width: 100%;
   max-width: 600px;
-
-  /* From https://css.glass */
-  background: rgba(3, 6, 68, 0.73);
+  background: #22252D;
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(3, 6, 68, 0.13);
 }
 
 .app {
@@ -45,6 +39,9 @@
   padding-right: 15px;
   font-size: 45px;
   text-align: end;
+  background-color: #22252D;
+  color: white;
+  font-weight: bold;
 }
 
 .calculatorContainer {
@@ -54,16 +51,39 @@
 }
 
 .calculatorButton {
-  height: 45px;
-  width: 45px;
-  border-radius: 25px;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
   justify-self: center;
+  font-size: 45px;
+  background-color: #272B33;
+  color: white;
 }
 
 .calculatorButton :hover {
   cursor: pointer;
 }
 
+.operationButton {
+  color: #E86565;
+}
+
+.equalButton {
+  grid-column: span 2;
+  height: 80px;
+  /* width: 80px; */
+  font-size: 45px;
+  border-radius: 10px;
+  color: white;
+  background-color: #E86565;
+  ;
+}
+
+.result {
+  display: flex;
+  flex-direction: row;
+  justify-items: end;
+}
 
 .calculatorGridContainer {
   max-width: 500px;
@@ -77,5 +97,10 @@
     ". . . ."
     ". . . ."
     ". . . ."
+    ". . . ."
     ". . . .";
+}
+
+button {
+  border-width: 0;
 }

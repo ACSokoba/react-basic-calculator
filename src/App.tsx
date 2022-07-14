@@ -44,27 +44,40 @@ function App() {
       setDisplayedValue(0);
       setCurrentBufferIndex(0);
     }
+    if (value === "=") {
+      // setBuffer([""]);
+      // setDisplayedValue(0);
+      // setCurrentBufferIndex(0);
+      buffer[0] = identifyAndExecuteOperation(buffer);
+      buffer.pop();
+      buffer.pop();
+      setDisplayedValue(+buffer[0]);
+    }
     console.log("buffer at the end is", buffer);
   }
 
   function executeOperation(buffer: string[]) {
     console.log("in executeOP");
     let newBuffer = structuredClone(buffer);
-    if (newBuffer[1] === "+") {
-      return (+newBuffer[0] + +newBuffer[2]).toString();
-    } else if (newBuffer[1] === "-") {
-      return (+newBuffer[0] - +newBuffer[2]).toString();
-    } else if (newBuffer[1] === "/") {
-      return (+newBuffer[0] / +newBuffer[2]).toString();
-    } else if (newBuffer[1] === "x") {
-      return (+newBuffer[0] * +newBuffer[2]).toString();
+    return identifyAndExecuteOperation(newBuffer);
+  }
+
+  function identifyAndExecuteOperation(buffer: string[]) {
+    if (buffer[1] === "+") {
+      return (+buffer[0] + +buffer[2]).toString();
+    } else if (buffer[1] === "-") {
+      return (+buffer[0] - +buffer[2]).toString();
+    } else if (buffer[1] === "/") {
+      return (+buffer[0] / +buffer[2]).toString();
+    } else if (buffer[1] === "x") {
+      return (+buffer[0] * +buffer[2]).toString();
     } else {
-      return "";
+      return "0";
     }
   }
 
   function handlePrecision(passedBuffer: string[]) {
-    return passedBuffer[0].split(".")[1].length > 14
+    return passedBuffer[0].split(".")[1]?.length > 14
       ? +(
           passedBuffer[0].split(".")[0] +
           "." +
@@ -72,7 +85,7 @@ function App() {
         )
       : +passedBuffer[0];
   }
-  
+
   function updateBuffer(passedBuffer: string[], operation: string) {
     if (passedBuffer.length === 3) {
       console.log("lenght  = 3");
@@ -117,7 +130,10 @@ function App() {
             <button className="calculatorButton" onClick={() => dispatch("9")}>
               9
             </button>
-            <button className="calculatorButton" onClick={() => dispatch("x")}>
+            <button
+              className="calculatorButton operationButton"
+              onClick={() => dispatch("x")}
+            >
               x
             </button>
             <button className="calculatorButton" onClick={() => dispatch("4")}>
@@ -129,7 +145,10 @@ function App() {
             <button className="calculatorButton" onClick={() => dispatch("6")}>
               6
             </button>
-            <button className="calculatorButton" onClick={() => dispatch("+")}>
+            <button
+              className="calculatorButton operationButton"
+              onClick={() => dispatch("+")}
+            >
               +
             </button>
             <button className="calculatorButton" onClick={() => dispatch("1")}>
@@ -141,7 +160,10 @@ function App() {
             <button className="calculatorButton" onClick={() => dispatch("3")}>
               3
             </button>
-            <button className="calculatorButton" onClick={() => dispatch("-")}>
+            <button
+              className="calculatorButton operationButton"
+              onClick={() => dispatch("-")}
+            >
               -
             </button>
             <button className="calculatorButton" onClick={() => dispatch("c")}>
@@ -153,8 +175,22 @@ function App() {
             <button className="calculatorButton" onClick={() => dispatch(".")}>
               .
             </button>
-            <button className="calculatorButton" onClick={() => dispatch("/")}>
+            <button
+              className="calculatorButton operationButton"
+              onClick={() => dispatch("/")}
+            >
               /
+            </button>
+            <button
+              className="calculatorButton"
+              style={{ visibility: "hidden" }}
+            ></button>
+            <button
+              className="calculatorButton"
+              style={{ visibility: "hidden" }}
+            ></button>
+            <button className="equalButton" onClick={() => dispatch("=")}>
+              =
             </button>
           </div>
         </div>
