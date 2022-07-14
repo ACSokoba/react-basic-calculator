@@ -1,0 +1,81 @@
+.app-container {
+  padding: 45px 0 45px 0;
+  display: flex;
+  flex-direction: column;
+  /* margin: 200px 100px 200px 100px; */
+  /* align-items: center; */
+  /* background-color: #141B41; */
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 600px;
+
+  /* From https://css.glass */
+  background: rgba(3, 6, 68, 0.73);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(3, 6, 68, 0.13);
+}
+
+.app {
+  margin: 100px 100px 100px 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 750px) {
+  .app-container {
+    margin: 0 0 0 0;
+  }
+
+  .app {
+    margin: 70px 0 0 0;
+  }
+}
+
+.calculatorInput {
+  border-radius: 10px;
+  width: 500px;
+  height: 80px;
+  margin-bottom: 45px;
+  padding-right: 15px;
+  font-size: 45px;
+  text-align: end;
+}
+
+.calculatorContainer {
+  display: block;
+  width: 500px;
+
+}
+
+.calculatorButton {
+  height: 45px;
+  width: 45px;
+  border-radius: 25px;
+  justify-self: center;
+}
+
+.calculatorButton :hover {
+  cursor: pointer;
+}
+
+
+.calculatorGridContainer {
+  max-width: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 15px 45px;
+  grid-auto-flow: row;
+  align-content: center;
+  grid-template-areas:
+    ". . . ."
+    ". . . ."
+    ". . . ."
+    ". . . .";
+}
